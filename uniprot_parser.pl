@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use genoma;
 
-my $seqs = "c:/users/Rafael/desktop/uniprot_example.fasta";
+my $seqs = "$ARGV[0];
 my @id_seq;
 
 open (IN, '<', $seqs);
