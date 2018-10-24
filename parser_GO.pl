@@ -38,7 +38,7 @@ foreach my $line (<IN>){
                         if ($temp > 50){
 #                               print "$code\n";
 #                               print "$split[0]\t$split[2]\t$code\n";
-                                $hash{$split[0]}{$split[7]}=$code;
+                                $hash{$split[0]}{$split[2]}{$split[7]}=$code;
                         }
                 }
         }
@@ -51,7 +51,9 @@ open (OUT, ">", "GO_$code.txt");
 foreach my $chave1 (keys %hash){
 #       print "$chave1\n";
         foreach my $chave2 (keys %{$hash{$chave1}}){
-                print OUT "$chave1\t$chave2\t$hash{$chave1}{$chave2}\n";
+                foreach my $chave3 (keys %{$hash{$chave1}{$chave2}}){
+                        print OUT "$chave1\t$chave2\t$chave3\t$hash{$chave1}{$chave2}{$chave3}\n";
+                }
         }
 }
 
