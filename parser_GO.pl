@@ -3,7 +3,10 @@
 use strict;
 use warnings;
 
+#Go Enrichment analysis file (http://www.geneontology.org/)
 my $file = $ARGV[0];
+#cutoff value [0-100]
+my $cutoff = $ARGV[1];
 
 open (IN, "<", $file);
 my $size = 0;
@@ -35,7 +38,7 @@ foreach my $line (<IN>){
                         #print "$split[0]\t$split[2]\t$split[7]\n";
                         my $temp = $split[2]/$size;
                         $temp = $temp * 100;
-                        if ($temp > 50){
+                        if ($temp > $cutoff){
 #                               print "$code\n";
 #                               print "$split[0]\t$split[2]\t$code\n";
                                 $hash{$split[0]}{$split[2]}{$split[7]}=$code;
