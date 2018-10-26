@@ -6,6 +6,7 @@ use Number::FormatEng qw (:all);
 use Data::Dumper;
 use LWP::UserAgent;
 
+#blast result - tabular format
 my $file = $ARGV[0];
 my (%query,%final,@unip);
 
@@ -16,8 +17,7 @@ open (IN, "<", $file);
 foreach my $line (<IN>){
 	chomp $line;
 	my @split = split (/\t/,$line);
-	#Evalue 1e-3 --- mudar para terminal [variavel]
-	#add filtro por cobertura
+	#Evalue 1e-3
 	if ($split[10] < 0.01){
 		$query{$split[0]}{$split[1]}{$split[10]}=$split[11];
 	}
@@ -61,21 +61,16 @@ close OUT;
 
 my $base = 'https://www.uniprot.org';
 my $tool = 'uploadlists';
-#print "@unip\n";
 
 my $scalar = join (" ", @unip);
 $scalar = "\'" . $scalar . "\'";
-#print "$scalar\n";
 
 open (OUT2, ">", "temp.out");
 my $params = {
   from => 'ACC',
-  #to => 'P_REFSEQ_AC',
   to => 'GENENAME',
   format => 'tab',
-  #query => 'P13368 P20806 Q9UM73 P97793 Q17192'
   query => $scalar
-  #query => $result1
 };
 my $contact = ''; # Please set a contact email address here to help us debug in case of problems (see https://www.uniprot.org/help/privacy).
 my $agent = LWP::UserAgent->new(agent => "libwww-perl $contact");
