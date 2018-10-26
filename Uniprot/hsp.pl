@@ -2,8 +2,6 @@
 
 use strict;
 use warnings;
-use Number::FormatEng qw (:all);
-use Data::Dumper;
 use LWP::UserAgent;
 
 #blast result - tabular format
