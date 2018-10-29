@@ -1,0 +1,3 @@
+Recupera o melhor hit de cada proteína (menor evalue a partir de E^-3)
+cria input cytoscape
+Cria arquivos fasta a partir do alinhamento (contra Uniprot)
